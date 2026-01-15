@@ -3,7 +3,7 @@
   "kind": "Dashboard",
   "metadata": {
     "name": "hov98cd",
-    "generation": 114,
+    "generation": 117,
     "creationTimestamp": "2025-10-28T14:02:03Z",
     "labels": {},
     "annotations": {}
@@ -374,7 +374,7 @@
                       "group": "influxdb",
                       "kind": "DataQuery",
                       "spec": {
-                        "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"snmp_interface\")\r\n  |> filter(fn: (r) => r[\"hostname\"] == \"${hostname}\")\r\n  |> filter(fn: (r) => r._field == \"rx_bytes\")\r\n  |> group(columns: [\"interface\"])\r\n  |> derivative(unit: 1s, nonNegative: true)\r\n  |> map(fn: (r) => ({ r with _value: r._value * 8.0 }))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"download\")\r\n"
+                        "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"snmp_interface_hc\")\r\n  |> filter(fn: (r) => r[\"hostname\"] == \"${hostname}\")\r\n  |> filter(fn: (r) => r._field == \"rx_bytes\")\r\n  |> group(columns: [\"interface\"])\r\n  |> derivative(unit: 1s, nonNegative: true)\r\n  |> map(fn: (r) => ({ r with _value: r._value * 8.0 }))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"download\")\r\n"
                       },
                       "version": "v0"
                     },
@@ -446,7 +446,7 @@
                       }
                     ]
                   },
-                  "unit": "Bps"
+                  "unit": "binbps"
                 },
                 "overrides": []
               },
@@ -483,7 +483,7 @@
                       "group": "influxdb",
                       "kind": "DataQuery",
                       "spec": {
-                        "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"snmp_interface\")\r\n  |> filter(fn: (r) => r[\"hostname\"] == \"${hostname}\")\r\n  |> filter(fn: (r) => r._field == \"tx_bytes\")\r\n  |> group(columns: [\"interface\"])\r\n  |> derivative(unit: 1s, nonNegative: true)\r\n  |> map(fn: (r) => ({ r with _value: r._value * 8.0 }))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"download\")\r\n"
+                        "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r._measurement == \"snmp_interface_hc\")\r\n  |> filter(fn: (r) => r[\"hostname\"] == \"${hostname}\")\r\n  |> filter(fn: (r) => r._field == \"tx_bytes\")\r\n  |> group(columns: [\"interface\"])\r\n  |> derivative(unit: 1s, nonNegative: true)\r\n  |> map(fn: (r) => ({ r with _value: r._value * 8.0 }))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"download\")\r\n"
                       },
                       "version": "v0"
                     },
@@ -555,7 +555,7 @@
                       }
                     ]
                   },
-                  "unit": "Bps"
+                  "unit": "binbps"
                 },
                 "overrides": []
               },
@@ -919,7 +919,7 @@
                       "group": "influxdb",
                       "kind": "DataQuery",
                       "spec": {
-                        "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"snmp_interface\")\r\n  |> filter(fn: (r) => r[\"hostname\"] == \"${hostname}\")\r\n  |> filter(fn: (r) => r[\"interface\"] == \"${interface_prefix}${interfaces}\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"rx_bytes\")\r\n  |> derivative(unit: 1s, nonNegative: true)\r\n  |> map(fn: (r) => ({ r with _value: r._value * 8.0 }))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)"
+                        "query": "from(bucket: \"${bucket}\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"snmp_interface_hc\")\r\n  |> filter(fn: (r) => r[\"hostname\"] == \"${hostname}\")\r\n  |> filter(fn: (r) => r[\"interface\"] == \"${interface_prefix}${interfaces}\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"rx_bytes\")\r\n  |> derivative(unit: 1s, nonNegative: true)\r\n  |> map(fn: (r) => ({ r with _value: r._value * 8.0 }))\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)"
                       },
                       "version": "v0"
                     },
@@ -1032,7 +1032,7 @@
                       }
                     ]
                   },
-                  "unit": "Bps"
+                  "unit": "binbps"
                 },
                 "overrides": [
                   {
