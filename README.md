@@ -1,7 +1,7 @@
 # Cisco SG300 Monitoring
 
 A dashboard to display data from my Cisco SG300 Switch scraped via SNMP from Telegraf, stored in InfluxDB and visualized in Grafana.
-[]()
+[https://grafana.com/grafana/dashboards/24729-cisco-sg300-28pp/](https://grafana.com/grafana/dashboards/24729-cisco-sg300-28pp/)
 
 ### Info
 ![Screenshot 1](./assets/grafana_board_1.png)
